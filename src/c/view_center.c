@@ -219,7 +219,7 @@ void view_center_create(Window *window) {
 	s_time_layer = text_layer_create(GRect(0, 0, bounds.size.w, s_time_row_h));
 	text_layer_set_background_color(s_time_layer, GColorClear);
 	text_layer_set_text_color(s_time_layer, GColorWhite);
-	text_layer_set_text(s_time_layer, "--:--");
+	text_layer_set_text(s_time_layer, "--:--:--");
 	text_layer_set_font(s_time_layer, time_font);
 	text_layer_set_text_alignment(s_time_layer, GTextAlignmentCenter);
 	layer_add_child(window_layer, text_layer_get_layer(s_time_layer));
@@ -251,12 +251,12 @@ void view_center_apply_visibility(void) {
 void view_center_update_time(void) {
 	time_t now = time(NULL);
 	struct tm *tick_time = localtime(&now);
-	static char time_buffer[8];
+	static char time_buffer[11];
 
 	if (!tick_time) {
-		snprintf(time_buffer, sizeof(time_buffer), "--:--");
+		snprintf(time_buffer, sizeof(time_buffer), "--:--:--");
 	} else {
-		strftime(time_buffer, sizeof(time_buffer), "%H:%M", tick_time);
+		strftime(time_buffer, sizeof(time_buffer), "%H:%M:%S", tick_time);
 	}
 
 	text_layer_set_text(s_time_layer, time_buffer);

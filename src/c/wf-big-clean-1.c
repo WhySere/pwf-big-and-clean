@@ -114,7 +114,7 @@ static void init(void) {
 		.pebble_app_connection_handler = connection_handler,
 	});
 
-	tick_timer_service_subscribe(MINUTE_UNIT, tick_handler);
+	tick_timer_service_subscribe(SECOND_UNIT, tick_handler);
 	battery_state_service_subscribe(view_solar_on_battery_change);
 	health_service_events_subscribe(health_handler, NULL);
 
